@@ -71,7 +71,7 @@
   
     <h2>Cadastro de Cliente</h2>
     <h1>${loja != null ? 'Editar Cliente' : 'Novo Cliente'}</h1>
-    <form action="loja?action=${loja != null ? 'update' : 'insert'}" method="get">
+    <form action="loja?action=${loja != null ? 'update' : 'insert'}" method="post">
     <div class="form-group">
         <label for="nome">Nome:</label>
         <input type="text" class="form-control" name="nome" 
