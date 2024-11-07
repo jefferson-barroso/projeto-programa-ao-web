@@ -1,7 +1,7 @@
 package model;
 
 //1- Criar a classe com os atribitos da tabela do BD
-public class loja {
+public class Loja {
 	private int id;
 	private String cpf; 
 	private String nome; 
@@ -10,7 +10,7 @@ public class loja {
 	
 	
 	//2- Cria o construtor
-	public loja(String cpf, String nome, String telefone, String email) {
+	public Loja(String cpf, String nome, String telefone, String email) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
