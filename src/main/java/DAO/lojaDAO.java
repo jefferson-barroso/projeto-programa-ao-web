@@ -88,6 +88,34 @@ public class LojaDAO {
         }
         return lojas;
     }
+    
+    //metodo de pesquisa
+    public List<Loja> searchLojas(String query) {
+        List<Loja> lojas = new ArrayList<>();
+        String searchQuery = "SELECT * FROM loja WHERE nome LIKE ? OR cpf LIKE ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)) {
+            preparedStatement.setString(1, "%" + query + "%");
+            preparedStatement.setString(2, "%" + query + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String cpf = rs.getString("cpf");
+                String nome = rs.getString("nome");
+                String telefone = rs.getString("telefone");
+                String email = rs.getString("email");
+                Loja loja = new Loja(cpf, nome, telefone, email);
+                loja.setId(id);
+                lojas.add(loja);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lojas;
+    }
+
 
     // Método para atualizar uma loja (Update)
     public boolean updateLoja(Loja loja) throws SQLException {

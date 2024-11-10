@@ -76,13 +76,16 @@
         <input type="text" class="form-control" name="nome" value="${loja != null ? loja.nome : ''}" />
       </div>
       
-      <div class="form-group">
-        <label for="cpf">CPF:</label>
-        <input type="number" class="form-control" name="cpf" 
-               value="${loja != null ? loja.cpf : ''}" pattern="\d{11}" maxlength="11" 
-               title="O CPF deve ter exatamente 11 dígitos" required/>
-      </div>
-      
+	<div class="form-group">
+	    <label for="cpf">CPF:</label>
+	    <input type="text" class="form-control" name="cpf" id="cpf"
+	           value="${loja != null ? loja.cpf : ''}" 
+	           maxlength="11" pattern="\d{11}"
+	           title="O CPF deve conter exatamente 11 dígitos numéricos"
+	           required 
+	           onkeypress="return onlyNumbers(event)" />
+	</div>
+
       <div class="form-group">
         <label for="telefone">Telefone:</label>
         <input type="number" class="form-control" placeholder="99 999999999" name="telefone" 

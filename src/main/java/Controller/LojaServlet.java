@@ -47,6 +47,9 @@ public class LojaServlet extends HttpServlet {
                 case "update":
                     updateLoja(request, response);
                     break;
+                case "search": 
+                    searchLoja(request, response);
+                    break;
                 default:
                     listLoja(request, response);
                     break;
@@ -54,6 +57,15 @@ public class LojaServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+    
+ // Novo método para pesquisa de lojas
+    private void searchLoja(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String query = request.getParameter("query");
+        List<Loja> listLoja = lojaDAO.searchLojas(query);
+        request.setAttribute("listLoja", listLoja);
+        request.getRequestDispatcher("lojaListaAtualizada.jsp").forward(request, response);
     }
 
     // Método para listar todas as lojas
